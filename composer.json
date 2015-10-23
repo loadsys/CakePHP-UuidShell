@@ -1,0 +1,43 @@
+{
+  "name": "loadsys/cakephp-uuid-shell",
+  "description": "An incredibly simple Shell that exposes the String::uuid() method to the command line. Convenient for generating new IDs in bulk for seed or development data that use UUIDs as primary keys.",
+  "type": "cakephp-plugin",
+  "keywords": [
+    "cakephp",
+    "uuid",
+    "shell"
+  ],
+  "homepage": "https://github.com/loadsys/CakePHP-UuidShell",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Brian Porter",
+      "email": "beporter@users.sourceforge.net"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/loadsys/CakePHP-UuidShell/issues",
+    "source": "https://github.com/loadsys/CakePHP-UuidShell"
+  },
+  "require": {
+    "php": ">=5.6",
+    "cakephp/cakephp": "~3.0",
+    "composer/installers": "~1.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.8",
+    "loadsys/loadsys_codesniffer": "dev-master",
+    "satooshi/php-coveralls": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "UuidShell\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Cake\\Test\\": "vendor/cakephp/cakephp/test",
+      "UuidShell\\Test\\": "tests"
+    }
+  }
+}
