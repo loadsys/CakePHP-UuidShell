@@ -1,0 +1,47 @@
+language: php
+
+sudo: false
+
+php:
+  - 5.6
+
+# Environment Variables to set
+env:
+  global:
+    # Contains a $GITHUB_TOKEN env var for use with composer to avoid API limits.
+    - secure: "R9xk2fKov4LbsxITtyScw+lcL7DRCKogKGaZIiUTAt5ZBXSuAV5Q7XF92HERPeeXFl9LbcgidoLfWLGEmKDme2WO7fHXZxouQ/AHwhsVM40DHdQC7+qdiWpBFlcq6ue8tCLHC8o59f17xfCiG7H4RRODKzhirWQ1TyxfARKby363wa7LAAURjAU9rPUAbqFZhNc+gJdI5s81qRcK+61HEqUzKQ8VtdPTQjFBqZ/QIG6dSvOCaaDmyfGzw3kwaMPf4FzkeSIm5nAgi9zOlBLq4PZgWScRuXwbZMSx5gmyKWMkzESo2EBwfoCrC/gor8NehTeOvwyceArMRIbQPD0+ew7+xYacr+BO9SkRB96hotcyl2/TtMB4PrYC5vLw+dsgJbNrKYlnLU/9MvZEAfbUScYCUt+dw/sIRFdpFoCnZvyCBOmK/Mji5dH+ARcPG0Tqr82woyVsd/7ij6Ji1THZ7ZvJO/ZHzR3X0nOxwmIaCO5vny7Gbe/tU9BM2ZG137TKnlqWOAkG4YTMPct/OSOO2blPV3VnHEf8GhRrKgaFvZgKTCw8qmREjxE0P2pVDTzXA3xXoF3ydjq7ffdONw5VNQjhqFO8PIO6xWFLcH8LVKVr3lKy5ud16NRGCTwPwozXubSUcKMAvd3xbV1eOXKD+1flMwMxbX9f8m6UBVcR2no="
+
+
+# Cache the composer directories, only allowed if using the container based setup
+# which depends on setting sudo to false
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+# Branches to be built or not
+branches:
+  # Blacklist these branches
+  except:
+    - gh-pages
+
+before_install:
+  - composer self-update
+  - mkdir -p build/logs
+
+install:
+  - composer config -g github-oauth.github.com $GITHUB_TOKEN
+  - composer install --no-interaction
+
+before_script:
+  - phpenv rehash
+  - vendor/bin/phpcs --config-set installed_paths vendor/loadsys/loadsys_codesniffer,vendor/cakephp/cakephp-codesniffer
+
+script:
+  - vendor/bin/phpcs -np --extensions=php --standard=Loadsys ./src ./tests
+  - vendor/bin/phpunit --coverage-clover=build/logs/clover.xml
+
+after_script:
+  - php vendor/bin/coveralls -v
+
+notifications:
+  email: false
