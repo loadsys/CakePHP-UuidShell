@@ -24,6 +24,12 @@ A CakePHP plugin that provides a Shell to read an app's Configure vars from the 
 $ composer require loadsys/cakephp-uuid-shell:~1.0
 ```
 
+In your `config/bootstrap.php` file, add:
+
+```php
+Plugin::load('Uuid', ['bootstrap' => false, 'routes' => false]);
+```
+
 
 ## Usage
 
@@ -51,6 +57,25 @@ Please use [GitHub Isuses](https://github.com/loadsys/CakePHP-UuidShell/issues) 
 ### Development
 
 When developing this plugin, please fork and issue a PR for any new development.
+
+Set up a working copy:
+```shell
+$ git clone git@github.com:YOUR_USERNAME/CakePHP-UuidShell.git
+$ cd CakePHP-UuidShell/
+$ composer install
+$ vendor/bin/phpcs --config-set installed_paths vendor/loadsys/loadsys_codesniffer,vendor/cakephp/cakephp-codesniffer
+```
+
+Make your changes:
+```shell
+$ git checkout -b your-topic-branch
+# (Make your changes. Write some tests.)
+$ vendor/bin/phpunit
+$ vendor/bin/phpcs -p --extensions=php --standard=Loadsys ./src ./tests
+```
+
+Then commit and push your changes to your fork, and open a pull request.
+
 
 ## License
 
