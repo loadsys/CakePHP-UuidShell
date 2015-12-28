@@ -48,6 +48,6 @@ Configure::write('App', [
 	]
 ]);
 
-Plugin::load('UuidShell', [
+Plugin::load('Uuid', [
 	'path' => dirname(dirname(__FILE__)) . DS,
 ]);

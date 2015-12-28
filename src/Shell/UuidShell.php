@@ -4,7 +4,7 @@
  *
  * @package UuidShell\Shell
  */
-namespace UuidShell\Shell;
+namespace Uuid\Shell;
 
 use Cake\Console\Shell;
 use Cake\Utility\Text;

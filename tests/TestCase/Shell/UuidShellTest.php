@@ -2,12 +2,12 @@
 /**
  * Tests for the UuidShell class.
  */
-namespace UuidShell\Test\TestCase\Shell;
+namespace Uuid\Test\TestCase\Shell;
 
 use Cake\Console\ConsoleOptionParser;
 use Cake\Console\Shell;
 use Cake\TestSuite\TestCase;
-use UuidShell\Shell\UuidShell;
+use Uuid\Shell\UuidShell;
 
 /**
  * UuidShellTest class
